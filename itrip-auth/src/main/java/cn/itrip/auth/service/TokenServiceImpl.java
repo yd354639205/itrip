@@ -42,7 +42,7 @@ public class TokenServiceImpl implements TokenService {
         return str.toString();
     }
 
-    private long protectenTime = 30*60;
+    private long protectenTime = 30*60*1000;
     private int delay = 2*60;
     @Override
     public String reloadToken(String userAgent, String token)throws Exception {
@@ -53,7 +53,7 @@ public class TokenServiceImpl implements TokenService {
         Date genTime = new SimpleDateFormat("yyyyMMddHHmmsss").parse(token.split("-")[3]);
         long passed = Calendar.getInstance().getTimeInMillis()-genTime.getTime();
         if (passed<protectenTime)
-            throw new Exception("token置换保护期内，你能置换。剩余"+(protectenTime-passed)/1000);
+            throw new Exception("token置换保护期内，你不能置换。剩余"+(protectenTime-passed)/1000);
         //进行转换
         String user = redisAPI.get(token);
         ItripUser itripUser = JSON.parseObject(user,ItripUser.class);

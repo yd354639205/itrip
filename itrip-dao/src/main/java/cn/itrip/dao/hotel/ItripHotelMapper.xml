@@ -59,7 +59,7 @@
         </trim>
     </select>
 
-    <select id="getItripHotelFacilitiesById" resultType="cn.itrip.beans.vo.hotel.ItripSearchFacilitiesHotelVO" >
+    <select id="getItripHotelFacilitiesById" resultType="cn.itrip.beans.ItripSearchFacilitiesHotelVO" >
         select
         facilities as facilities
         from itrip_hotel
@@ -70,7 +70,7 @@
         </trim>
     </select>
 
-    <select id="queryHotelPolicy" resultType="cn.itrip.beans.vo.hotel.ItripSearchPolicyHotelVO" >
+    <select id="queryHotelPolicy" resultType="cn.itrip.beans.ItripSearchPolicyHotelVO" >
         select
         hotelPolicy as hotelPolicy
         from itrip_hotel
@@ -106,7 +106,7 @@
         )
     </select>-->
 
-    <resultMap id="hotelDetailsMap" type="cn.itrip.beans.vo.hotel.ItripSearchDetailsHotelVO">
+    <resultMap id="hotelDetailsMap" type="cn.itrip.beans.ItripSearchDetailsHotelVO">
         <result property="name" column="name" />
         <result property="description" column="description" />
     </resultMap>

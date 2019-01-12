@@ -1,4 +1,4 @@
-package cn.itrip.beans.vo.hotel;
+package cn.itrip.beans;
 
 import io.swagger.annotations.ApiModel;
 

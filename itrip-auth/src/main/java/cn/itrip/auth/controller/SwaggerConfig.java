@@ -27,8 +27,8 @@ public class SwaggerConfig {
      private ApiInfo apiInfo() {
          return new ApiInfoBuilder()
                  .title("爱旅行-用户认证模块API")//标题
-                 .description("http://yang-dong.club:8080//auth")//描述
-                 .termsOfServiceUrl("http://yang-dong.club:8080//auth")
+                 .description("http://yang-dong.club:8090//auth")//描述
+                 .termsOfServiceUrl("http://yang-dong.club:8090//auth")
                  .contact("yd项目组")//作者信息
                  .version("1.0")//版本号
                 .build();

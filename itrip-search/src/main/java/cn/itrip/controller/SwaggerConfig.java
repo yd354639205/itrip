@@ -1,4 +1,4 @@
-package cn.itrip.search.controller;
+package cn.itrip.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

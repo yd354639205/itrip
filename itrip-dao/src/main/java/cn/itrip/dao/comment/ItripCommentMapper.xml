@@ -114,7 +114,7 @@
         </if>
     </select>
 
-    <select id="getItripCommentCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getItripCommentCountByMap" resultType="integer"  parameterType="java.util.Map">
         select count(*) from itrip_comment
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -217,6 +217,7 @@
                      #{modifyDate},
                     #{modifiedBy})
     </insert>
+    <insert id="insert"></insert>
 
     <update id="updateItripComment" parameterType="cn.itrip.beans.pojo.ItripComment">
         update itrip_comment

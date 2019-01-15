@@ -33,7 +33,7 @@ public class LoginAuthController {
 
     @RequestMapping(value = "/dologin",method = RequestMethod.POST,produces= "application/json")
     @ApiOperation(value="登录",httpMethod = "post",protocols = "http")
-    @ApiImplicitParams({ @ApiImplicitParam(required = true,name = "name",value = "用户名",paramType = "form"),
+    @ApiImplicitParams({ @ApiImplicitParam(required = true,name = "name" ,value = "用户名",paramType = "form"),
             @ApiImplicitParam(required = true,name = "password",value = "密码",paramType = "form")})
     public @ResponseBody
     Dto tologin(String name, String password,HttpServletRequest request){

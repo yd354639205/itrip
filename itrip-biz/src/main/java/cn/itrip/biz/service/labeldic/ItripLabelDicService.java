@@ -19,4 +19,6 @@ public interface ItripLabelDicService {
      */
     public List<ItripLabelDicVO> getItripLabelDicByParentId(Long parentId)throws Exception;
 
+    public List<ItripLabelDic>	getItripLabelDicListByMap(Map<String,Object> param)throws Exception;
+
 }

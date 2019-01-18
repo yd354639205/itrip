@@ -25,7 +25,7 @@ public class SystemCommentController {
     ItripCommentService itripCommentService;
 
     @ApiOperation(value = "据酒店id查询酒店平均分")
-    @RequestMapping(value = "/gethotelscore/{hotelId}",method = RequestMethod.POST)
+    @RequestMapping(value = "/gethotelscore/{hotelId}",method = RequestMethod.GET)
     public @ResponseBody
     Dto gethotelscore(@PathVariable String hotelId){
         Dto<Object> dto = new Dto<>();
@@ -45,7 +45,7 @@ public class SystemCommentController {
     }
 
     @ApiOperation(value = "根据酒店id查询各类评论数量")
-    @RequestMapping(value = "/getcount/{hotelId}",method = RequestMethod.POST)
+    @RequestMapping(value = "/getcount/{hotelId}",method = RequestMethod.GET)
     public @ResponseBody
     Dto getcount(@PathVariable String hotelId){
         Dto<Object> dto = new Dto<>();

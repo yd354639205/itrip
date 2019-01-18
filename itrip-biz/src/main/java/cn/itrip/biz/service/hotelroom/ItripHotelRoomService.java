@@ -12,4 +12,6 @@ public interface ItripHotelRoomService {
 
     public List<ItripHotelRoomVO>	getItripHotelRoomListByMap(Map<String, Object> param)throws Exception;
 
+    public ItripHotelRoom getItripHotelRoomById(Long id)throws Exception;
+
 }

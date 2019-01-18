@@ -20,4 +20,8 @@ public class ItripHotelRoomServiceImpl implements ItripHotelRoomService {
         return itripHotelRoomMapper.getItripHotelRoomListByMap(param);
     }
 
+    public ItripHotelRoom getItripHotelRoomById(Long id)throws Exception{
+        return itripHotelRoomMapper.getItripHotelRoomById(id);
+    }
+
 }

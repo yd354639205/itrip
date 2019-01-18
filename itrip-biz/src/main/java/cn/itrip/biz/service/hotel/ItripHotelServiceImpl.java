@@ -4,6 +4,7 @@ import cn.itrip.beans.ItripSearchDetailsHotelVO;
 import cn.itrip.beans.ItripSearchFacilitiesHotelVO;
 import cn.itrip.beans.ItripSearchPolicyHotelVO;
 import cn.itrip.beans.pojo.ItripAreaDic;
+import cn.itrip.beans.pojo.ItripHotel;
 import cn.itrip.beans.pojo.ItripLabelDic;
 import cn.itrip.dao.hotel.ItripHotelMapper;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,10 @@ public class ItripHotelServiceImpl implements ItripHotelService {
             list.add(vo2);
         }
         return list;
+    }
+
+    public ItripHotel getItripHotelById(Long id)throws Exception{
+        return itripHotelMapper.getItripHotelById(id);
     }
 
 }

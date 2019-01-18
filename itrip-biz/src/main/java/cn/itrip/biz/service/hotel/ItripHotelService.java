@@ -3,6 +3,8 @@ import cn.itrip.beans.HotelVideoDescVO;
 import cn.itrip.beans.ItripSearchDetailsHotelVO;
 import cn.itrip.beans.ItripSearchFacilitiesHotelVO;
 import cn.itrip.beans.ItripSearchPolicyHotelVO;
+import cn.itrip.beans.pojo.ItripHotel;
+
 import java.util.List;
 
 
@@ -44,5 +46,7 @@ public interface ItripHotelService {
      * @throws Exception
      */
     public List<ItripSearchDetailsHotelVO> queryHotelDetails(Long id)throws Exception;
+
+    public ItripHotel getItripHotelById(Long id)throws Exception;
 
 }

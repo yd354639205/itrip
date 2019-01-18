@@ -27,4 +27,8 @@ public class ItripLabelDicServiceImpl implements ItripLabelDicService {
         return itripLabelDicMapper.getItripLabelDicByParentId(parentId);
     }
 
+    public List<ItripLabelDic> getItripLabelDicListByMap(Map<String,Object> param)throws Exception{
+        return itripLabelDicMapper.getItripLabelDicListByMap(param);
+    }
+
 }

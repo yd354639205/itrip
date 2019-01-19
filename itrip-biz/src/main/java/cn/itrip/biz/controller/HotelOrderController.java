@@ -15,6 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -296,6 +297,42 @@ public class HotelOrderController {
         return dto;
     }
 
+    @ApiOperation(value = "修改订单的支付方式和状态", httpMethod = "POST",
+            protocols = "HTTP", produces = "application/json",
+            response = Dto.class, notes = "修改订单的支付方式和状态" +
+            "<p>成功：success = ‘true’ | 失败：success = ‘false’ 并返回错误码，如下：</p>" +
+            "<p>错误码：</p>" +
+            "<p>100521 : 对不起，此房间不支持线下支付</p>" +
+            "<p>100522 : 修改订单失败</p>" +
+            "<p>100523 : 不能提交空，请填写订单信息 </p>" +
+            "<p>100000 : token失效，请重新登录</p>")
+    @RequestMapping(value = "/updateorderstatusandpaytype", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public Dto<Map<String, Boolean>> updateOrderStatusAndPayType(@RequestBody ItripModifyHotelOrderVO itripModifyHotelOrderVO, HttpServletRequest request) {
+        String tokenString = request.getHeader("token");
+        ItripUser currentUser = validationToken.getCurrentUser(tokenString);
+        if (null != currentUser && null != itripModifyHotelOrderVO) {
+            try {
+                ItripHotelOrder itripHotelOrder = new ItripHotelOrder();
+                itripHotelOrder.setId(itripModifyHotelOrderVO.getId());
+                //设置支付状态为：支付成功
+                itripHotelOrder.setOrderStatus(2);
+                itripHotelOrder.setPayType(itripModifyHotelOrderVO.getPayType());
+                itripHotelOrder.setModifiedBy(currentUser.getId());
+                itripHotelOrder.setModifyDate(new Date(System.currentTimeMillis()));
+                itripHotelOrderService.itriptxModifyItripHotelOrder(itripHotelOrder);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return DtoUtil.returnFail("修改订单失败", "100522");
+            }
+            return DtoUtil.returnSuccess("修改订单成功");
+        } else if (null != currentUser && null == itripModifyHotelOrderVO) {
+            return DtoUtil.returnFail("不能提交空，请填写订单信息", "100523");
+        } else {
+            return DtoUtil.returnFail("token失效，请重新登录", "100000");
+        }
+    }
+
     @ApiOperation(value = "根据订单ID查看个人订单详情-房型相关信息", httpMethod = "GET",
             protocols = "HTTP", produces = "application/json",
             response = Dto.class, notes = "根据订单ID查看个人订单详情-房型相关信息" +
@@ -366,6 +403,30 @@ public class HotelOrderController {
         } catch (Exception e) {
             e.printStackTrace();
             return DtoUtil.returnFail("系统异常", "100534");
+        }
+    }
+
+    /***
+     * 10分钟执行一次 刷新订单的状态 不对外公布
+     */
+    @Scheduled(cron = "*0 0/10 * * * ?")
+    public void flushCancelOrderStatus() {
+        try {
+            boolean flag = itripHotelOrderService.flushOrderStatus(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /***
+     * 2小时执行一次 刷新订单的状态 不对外公布
+     */
+    @Scheduled(cron = "0 0 0/2 * * ?")
+    public void flushOrderStatus() {
+        try {
+            boolean flag = itripHotelOrderService.flushOrderStatus(2);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

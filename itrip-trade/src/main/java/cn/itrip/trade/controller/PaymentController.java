@@ -215,24 +215,26 @@ public class PaymentController {
             boolean verify_result = false;
 
             verify_result = AlipaySignature.rsaCheckV1(params, alipayConfig.getALIPAY_PUBLIC_KEY(), alipayConfig.getCHARSET(), "RSA2");
-
+            String id=orderService.loadItripHotelOrder(out_trade_no).getId().toString();
             if(verify_result){//验证成功
                 //////////////////////////////////////////////////////////////////////////////////////////
                 //请在这里加上商户的业务逻辑程序代码
                 //该页面可做页面美工编辑
-                response.sendRedirect(alipayConfig.getPaymentSuccessUrl());
+                response.sendRedirect("http://localhost/index.html#/orderpaystate?orderNo="+out_trade_no+"&amp;id="+id);
                 //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
                 //////////////////////////////////////////////////////////////////////////////////////////
             }else{
                 //该页面可做页面美工编辑
-                response.sendRedirect(alipayConfig.getPaymentFailureUrl());
+                response.sendRedirect("http://localhost/index.html#/orderpaystate?orderNo=%s&amp;id=%s&amp;state=0");
             }
         } catch (AlipayApiException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

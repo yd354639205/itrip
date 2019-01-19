@@ -21,10 +21,6 @@ public class AlipayConfig {
     private String log_path = "";
     // RSA2
     private String SIGNTYPE = "";
-    //支付成功跳转页
-    private String paymentSuccessUrl="";
-    //支付失败跳转页
-    private String paymentFailureUrl="";
 
     public String getAPPID() {
         return APPID;
@@ -106,19 +102,4 @@ public class AlipayConfig {
         this.SIGNTYPE = SIGNTYPE;
     }
 
-    public String getPaymentSuccessUrl() {
-        return paymentSuccessUrl;
-    }
-
-    public void setPaymentSuccessUrl(String paymentSuccessUrl) {
-        this.paymentSuccessUrl = paymentSuccessUrl;
-    }
-
-    public String getPaymentFailureUrl() {
-        return paymentFailureUrl;
-    }
-
-    public void setPaymentFailureUrl(String paymentFailureUrl) {
-        this.paymentFailureUrl = paymentFailureUrl;
-    }
 }

@@ -16,12 +16,42 @@ public class ItripHotelRoomServiceImpl implements ItripHotelRoomService {
     @Resource
     private ItripHotelRoomMapper itripHotelRoomMapper;
 
+    public ItripHotelRoom getItripHotelRoomById(Long id)throws Exception{
+        return itripHotelRoomMapper.getItripHotelRoomById(id);
+    }
+
     public List<ItripHotelRoomVO> getItripHotelRoomListByMap(Map<String,Object> param)throws Exception{
         return itripHotelRoomMapper.getItripHotelRoomListByMap(param);
     }
 
-    public ItripHotelRoom getItripHotelRoomById(Long id)throws Exception{
-        return itripHotelRoomMapper.getItripHotelRoomById(id);
+    public Integer getItripHotelRoomCountByMap(Map<String,Object> param)throws Exception{
+        return itripHotelRoomMapper.getItripHotelRoomCountByMap(param);
+    }
+
+    public Integer itriptxAddItripHotelRoom(ItripHotelRoom itripHotelRoom)throws Exception{
+            itripHotelRoom.setCreationDate(new Date());
+            return itripHotelRoomMapper.insertItripHotelRoom(itripHotelRoom);
+    }
+
+    public Integer itriptxModifyItripHotelRoom(ItripHotelRoom itripHotelRoom)throws Exception{
+        itripHotelRoom.setModifyDate(new Date());
+        return itripHotelRoomMapper.updateItripHotelRoom(itripHotelRoom);
+    }
+
+    public Integer itriptxDeleteItripHotelRoomById(Long id)throws Exception{
+        return itripHotelRoomMapper.deleteItripHotelRoomById(id);
+    }
+
+    public Page<ItripHotelRoomVO> queryItripHotelRoomPageByMap(Map<String,Object> param,Integer pageNo,Integer pageSize)throws Exception{
+        Integer total = itripHotelRoomMapper.getItripHotelRoomCountByMap(param);
+        pageNo = EmptyUtils.isEmpty(pageNo) ? Constants.DEFAULT_PAGE_NO : pageNo;
+        pageSize = EmptyUtils.isEmpty(pageSize) ? Constants.DEFAULT_PAGE_SIZE : pageSize;
+        Page page = new Page(pageNo, pageSize, total);
+        param.put("beginPos", page.getBeginPos());
+        param.put("pageSize", page.getPageSize());
+        List<ItripHotelRoomVO> itripHotelRoomList = itripHotelRoomMapper.getItripHotelRoomListByMap(param);
+        page.setRows(itripHotelRoomList);
+        return page;
     }
 
 }

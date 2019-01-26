@@ -1,6 +1,7 @@
 package cn.itrip.trade.service;
 
 import cn.itrip.beans.pojo.ItripHotelOrder;
+import cn.itrip.common.EmptyUtils;
 import cn.itrip.dao.hotelorder.ItripHotelOrderMapper;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void paySuccess(String orderNo, Integer payType, String tradeNo) throws Exception {
+    public void paySuccess(String orderNo, int payType, String tradeNo) throws Exception {
         ItripHotelOrder order = this.loadItripHotelOrder(orderNo);
         order.setOrderStatus(2);
         order.setPayType(payType);
@@ -39,11 +40,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void payFailed(String orderNo, Integer payType, String tradeNo) throws Exception {
+    public void payFailed(String orderNo, int payType, String tradeNo) throws Exception {
         ItripHotelOrder order = this.loadItripHotelOrder(orderNo);
         order.setOrderStatus(1);
         order.setPayType(payType);
         order.setTradeNo(tradeNo);
         this.itripHotelOrderMapper.updateItripHotelOrder(order);
     }
+
+    @Override
+    public boolean processed(String orderNo) throws Exception {
+        ItripHotelOrder itripHotelOrder=this.loadItripHotelOrder(orderNo);
+        return itripHotelOrder.getOrderStatus().equals(2)&&!EmptyUtils.isEmpty(itripHotelOrder.getTradeNo());
+    }
+
 }

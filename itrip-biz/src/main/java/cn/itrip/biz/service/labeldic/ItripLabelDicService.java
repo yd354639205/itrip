@@ -10,6 +10,20 @@ import cn.itrip.common.Page;
 */
 public interface ItripLabelDicService {
 
+    public ItripLabelDic getItripLabelDicById(Long id)throws Exception;
+
+    public List<ItripLabelDic>	getItripLabelDicListByMap(Map<String, Object> param)throws Exception;
+
+    public Integer getItripLabelDicCountByMap(Map<String, Object> param)throws Exception;
+
+    public Integer itriptxAddItripLabelDic(ItripLabelDic itripLabelDic)throws Exception;
+
+    public Integer itriptxModifyItripLabelDic(ItripLabelDic itripLabelDic)throws Exception;
+
+    public Integer itriptxDeleteItripLabelDicById(Long id)throws Exception;
+
+    public Page<ItripLabelDic> queryItripLabelDicPageByMap(Map<String, Object> param, Integer pageNo, Integer pageSize)throws Exception;
+
     /**
      * 根据parentId查询数据字典
      * @param parentId
@@ -18,7 +32,5 @@ public interface ItripLabelDicService {
      * add by hanlu 2017-5-11
      */
     public List<ItripLabelDicVO> getItripLabelDicByParentId(Long parentId)throws Exception;
-
-    public List<ItripLabelDic>	getItripLabelDicListByMap(Map<String,Object> param)throws Exception;
 
 }

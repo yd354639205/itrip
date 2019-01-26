@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class SearchHotelServiceImpl implements SearchHotelService {
 
-    private BaseQuery<ItripHotelVO> baseQuery = new BaseQuery("http://127.0.0.1:8080/solr/hotel/");
+    private BaseQuery<ItripHotelVO> baseQuery = new BaseQuery("http://192.168.171.131:8080/solr/hotel/");
 
     @Override
     public Page<ItripHotelVO> searchItripHotelPage(SearchHotelVO vo, Integer pageNo, Integer pageSize) throws Exception {

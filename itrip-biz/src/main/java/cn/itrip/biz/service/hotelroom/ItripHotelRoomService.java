@@ -10,8 +10,17 @@ import cn.itrip.common.Page;
 */
 public interface ItripHotelRoomService {
 
-    public List<ItripHotelRoomVO>	getItripHotelRoomListByMap(Map<String, Object> param)throws Exception;
-
     public ItripHotelRoom getItripHotelRoomById(Long id)throws Exception;
 
+    public List<ItripHotelRoomVO>	getItripHotelRoomListByMap(Map<String, Object> param)throws Exception;
+
+    public Integer getItripHotelRoomCountByMap(Map<String, Object> param)throws Exception;
+
+    public Integer itriptxAddItripHotelRoom(ItripHotelRoom itripHotelRoom)throws Exception;
+
+    public Integer itriptxModifyItripHotelRoom(ItripHotelRoom itripHotelRoom)throws Exception;
+
+    public Integer itriptxDeleteItripHotelRoomById(Long id)throws Exception;
+
+    public Page<ItripHotelRoomVO> queryItripHotelRoomPageByMap(Map<String, Object> param, Integer pageNo, Integer pageSize)throws Exception;
 }

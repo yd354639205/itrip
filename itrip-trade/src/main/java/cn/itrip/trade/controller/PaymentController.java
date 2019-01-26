@@ -220,13 +220,14 @@ public class PaymentController {
                 //////////////////////////////////////////////////////////////////////////////////////////
                 //请在这里加上商户的业务逻辑程序代码
                 //该页面可做页面美工编辑
-                response.sendRedirect("http://localhost/index.html#/orderpaystate?orderNo="+out_trade_no+"&amp;id="+id);
+                response.sendRedirect(
+                        String.format(alipayConfig.getPaymentSuccessUrl(), out_trade_no,id));
                 //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
                 //////////////////////////////////////////////////////////////////////////////////////////
             }else{
                 //该页面可做页面美工编辑
-                response.sendRedirect("http://localhost/index.html#/orderpaystate?orderNo=%s&amp;id=%s&amp;state=0");
+                response.sendRedirect(String.format(alipayConfig.getPaymentFailureUrl(), out_trade_no,id));
             }
         } catch (AlipayApiException e) {
             e.printStackTrace();

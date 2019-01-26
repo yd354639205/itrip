@@ -22,6 +22,10 @@ public class AlipayConfig {
     // RSA2
     private String SIGNTYPE = "";
 
+    private String paymentSuccessUrl="";
+
+    private String paymentFailureUrl="";
+
     public String getAPPID() {
         return APPID;
     }
@@ -40,6 +44,22 @@ public class AlipayConfig {
 
     public String getNotify_url() {
         return notify_url;
+    }
+
+    public String getPaymentSuccessUrl() {
+        return paymentSuccessUrl;
+    }
+
+    public void setPaymentSuccessUrl(String paymentSuccessUrl) {
+        this.paymentSuccessUrl = paymentSuccessUrl;
+    }
+
+    public String getPaymentFailureUrl() {
+        return paymentFailureUrl;
+    }
+
+    public void setPaymentFailureUrl(String paymentFailureUrl) {
+        this.paymentFailureUrl = paymentFailureUrl;
     }
 
     public void setNotify_url(String notify_url) {

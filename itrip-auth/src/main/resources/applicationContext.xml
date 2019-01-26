@@ -92,7 +92,7 @@
 		  destroy-method="close">
 		<constructor-arg ref="jedisPoolConfig"/>
 		<!--<constructor-arg name="host" value="192.168.171.129"/>-->
-		<constructor-arg value="127.0.0.1"/>
+		<constructor-arg value="192.168.171.131"/>
 		<constructor-arg value="6379"/>
 	</bean>
 	<bean id="redisAPI" class="cn.itrip.common.RedisAPI">

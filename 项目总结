@@ -1,5 +1,21 @@
 本次完成的项目是，分布式项目-----爱旅行。
-本系统是在旅游人数日益增多的情况下应运而生，它是一个关于现代人对旅游要求的提高和信息方便快捷日益加速而提出的一套应于网络的旅游网站系统，
+本系统是在旅游人数日益增多的情况下应运而生，它是一个关于现代人对旅游要求的提高和信息方便快捷日益加速而提出的一套应于网络的旅游网站系统。
 用户通过本系统可以快速获取出行目的地的信息，选择符合自己的酒店选择入住，还可以预定车票、机票。
-本系统使用IntelliJ Idea进行开发，是基于HTML语言、CSS叠层样式表、Javascript脚本、JSP、SSM框架以及MySQL数据库等技术实现，
+本系统使用IntelliJ Idea进行开发，是基于HTML语言、CSS叠层样式表、Javascript脚本、JSP、SSM框架以及MySQL数据库等技术实现。
 通过maven管理jar包依赖，通过git来进行版本控制。
+本系统采用前后端分离。
+前端服务器使用nginx，前端/WEB服务器放的是css，js，图片等等一系列静态资源，前端服务器负责控制页面引用&跳转&路由，前端页面异步调用后端的接口。
+后端/应用服务器使用tomcat，加快整体响应速度，提升开发效率，因为可以前后端并行开发，而不是像以前的强依赖。
+使用swagger以及postman来确保后端代码的正确性。
+      Postman 
+提供功能强大的 Web API 和 HTTP 请求的调试，它能够发送任何类型的HTTP 请求 (GET, POST, PUT, DELETE…)，并且能附带任何数量的参数和 Headers。
+      Swagger 
+是一个规范和完整的框架,用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+总体目标是使客户端和文件系统作为服务器以同样的速度来更新。文件的方法,参数和模型紧密集成到服务器端的代码,允许API来始终保持同步。
+项目中还使用到
+      邮箱注册
+使用Spring Mail API 发送邮件，Spring Mail API都在org.springframework.mail及其子包org.springframework.mail.javamail中封装。 
+SimpleMailMessage: 对邮件的一个简单封装，只能用于表示一个纯文本的邮件，也不能包含附件等
+JavaMailSenderImpl: 邮件发送器，主要提供了邮件发送接口、透明创建Java Mail的MimeMessage、及邮件发送的配置(如:host/port/username/password...)。
+MimeMailMessage、MimeMessageHelper：对MimeMessage进行了封装。
+登录时使用redis存储token，因为本项目是分布式项目，不能共享session，并且移动端也不存在session，所以采用token机制。

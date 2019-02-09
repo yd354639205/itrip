@@ -19,3 +19,10 @@ SimpleMailMessage: 对邮件的一个简单封装，只能用于表示一个纯�
 JavaMailSenderImpl: 邮件发送器，主要提供了邮件发送接口、透明创建Java Mail的MimeMessage、及邮件发送的配置(如:host/port/username/password...)。
 MimeMailMessage、MimeMessageHelper：对MimeMessage进行了封装。
 登录时使用redis存储token，因为本项目是分布式项目，不能共享session，并且移动端也不存在session，所以采用token机制。
+在用户搜索时，考虑到并发性还有海量数据的查询，采用solr。
+      Solr
+是一个功能强大的搜索服务器，它支持REST风格API。Solr是基于Lucene的，Lucene 支持强大的匹配能力，如短语，通配符，连接，分组和更多不同的数据类型。
+      支付宝支付
+1.生成并上传RSA2(SHA256)的应用公钥
+2.编写代码时将网关、appid、应用私钥、应用公钥、支付宝公钥、回调地址填写好
+3.编写回调方法
